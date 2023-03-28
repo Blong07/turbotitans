@@ -1,5 +1,7 @@
 import turtle
 
+
+
 # Create a Turtle window
 window = turtle.Screen()
 window.title("Turbo Titans!") # sets title of window name
@@ -90,8 +92,8 @@ t1.showturtle()
 t1.right(300)
 t1.forward(200)
 
-#input("What is your name?")
-#print
+# input("What is your name?")
+# print
 
 
 #asks for name
@@ -108,11 +110,13 @@ def carnumber():
     print(str(carnumberX) + " is a good car")
 
     while True:
-        #age = input('Are you 1,2 OR 3')
+        # age = input('Are you 1,2 OR 3')
         if carnumberX >= 1 and carnumberX <=6:
             break
         else:
             print('you are annoying and stupid')
+
+
 
 
 carnumber()
