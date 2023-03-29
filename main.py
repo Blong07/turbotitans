@@ -1,6 +1,5 @@
 import turtle
-
-
+from easygui import *
 
 # Create a Turtle window
 window = turtle.Screen()
@@ -89,50 +88,104 @@ t1.hideturtle()
 t1.penup()
 t1.goto(-70, 210)
 t1.showturtle()
-t1.right(300)
-t1.forward(200)
+#t1.right(300)
+#t1.forward(200)
 
 # input("What is your name?")
 # print
+
+
+def chosen_name(name):
+    # message / information to be displayed on the screen
+    message = "Welcome to the game, " + name
+
+    # title of the window
+    title = "Turbo Titans"
+
+    # text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+    # printing the output
+    print("User pressed  : " + output)
+
+def chosen_car(carnumberX):
+    # message / information to be displayed on the screen
+    message = "You have chosen the car, " + str(carnumberX)
+
+    # title of the window
+    title = "Turbo Titans"
+
+    # text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+    # printing the output
+    print("User pressed  : " + output)
+
+def bad_car(carnumberX):
+    # message / information to be displayed on the screen
+    message = "You have chosen an unacceptable car fool, " + str(carnumberX)
+
+    # title of the window
+    title = "Turbo Titans"
+
+    # text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+    # printing the output
+    print("User pressed  : " + output)
+
+    carnumber()
+
+
 
 
 #asks for name
 def hello():
     name=str(turtle.textinput("What is your name?", "Enter your Name"))
     print("hello " + str(name))
+    chosen_name(name)
     return
+
 hello()
 
 
 def carnumber():
-    carnumberX= int(turtle.textinput("Enter car between 1 and 6", "Enter Car Number"))
+    carnumberString = turtle.textinput("Enter car between 1 and 6", "Enter Car Number")
 
-    print(str(carnumberX) + " is a good car")
+    try:
 
-    while True:
-        # age = input('Are you 1,2 OR 3')
+        carnumberX=int(carnumberString)
+
+        # print(str(carnumberX) + " is a good car")
+
+        # car selection (choose between 1 - 6)
         if carnumberX >= 1 and carnumberX <=6:
-            break
+            chosen_car(carnumberX)
         else:
-            print('you are annoying and stupid')
+            # print('you are annoying and stupid')
+            bad_car(carnumberX)
 
+            # show a message box that says you have the wrong car
+    except:
+        bad_car(carnumberString)
+
+
+
+def car_go_vroom():
+    pass
 
 
 
 carnumber()
-
-
-
-
-
-#playing rounds
-"""def play_roundx():
-    roll = random.randint(1,6)
-    print("the dice rolled:", roll)"""
-
-
-
-
 
 
 turtle.done() # Keep the window open until the user closes it

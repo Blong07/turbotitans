@@ -6,7 +6,7 @@ import easygui
 message = "Welcome to the game, Alex Blong"
 
 # title of the window
-title = "GfG - EasyGUI"
+title = "Turbo Titans"
 
 # text of the Ok button
 ok_btn_txt = "Continue"
