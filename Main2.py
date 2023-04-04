@@ -11,9 +11,15 @@ window.bgpic('6track.gif')#had to be gif to work
 window.setup(width=2000,height=2000)
 window.update()
 
+number_of_cars = 7
+
 # Load images to use for the turtles
 # define the car image filenames
 Cars = ["PorCh2.gif", "bmCRw2.gif", "ferrar1.gif", "lambo.gif"]
+# adds car numbers and loops over car numbers
+for i in range (0, number_of_cars - len(Cars)):
+    Cars.append(Cars[i])
+
 
 # create a list of turtle images by adding the car images to the shape dictionary
 images = []
@@ -23,12 +29,12 @@ for car in Cars:
 
 # create six turtles with random images from the list
 turtles = []
-for i in range(1, 7):
+for i in range(0, number_of_cars):
     t = turtle.Turtle()
     t.hideturtle()
     t.penup()
     t.goto(-250, -100 + 50 * i)
-    t.shape(random.choice(images))
+    t.shape(images[i])
     t.showturtle()
     turtles.append(t)
 
@@ -99,7 +105,7 @@ hello()
 
 
 def carnumber():
-    carnumberString = turtle.textinput("Enter car between 1 and 6", "Enter Car Number")
+    carnumberString = turtle.textinput("Enter car between 1 and " + str(number_of_cars), "Enter Car Number")
 
     try:
 
@@ -107,8 +113,8 @@ def carnumber():
 
         # print(str(carnumberX) + " is a good car")
 
-        # car selection (choose between 1 - 6)
-        if carnumberX >= 1 and carnumberX <= 6:
+        # car selection (choose between 1 - number of cars)
+        if carnumberX >= 1 and carnumberX <= number_of_cars:
             chosen_car(carnumberX)
         else:
             # print('you are annoying and stupid')
