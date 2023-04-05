@@ -135,7 +135,7 @@ print("press space bar to roll dice")
 
 def roll_dice():
     # Roll the dice and move the corresponding turtle
-    number = random.randint(1, 6)
+    number = random.randint(1, number_of_cars)
 
     print("Dice rolled: ", number)
 
