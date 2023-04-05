@@ -55,6 +55,12 @@ tf.hideturtle()
 tf.goto(-10, 230)
 tf.showturtle()
 
+numbers = [1, 2, 3, 4, 5]
+
+
+for number in numbers:
+    t4.write(number, align="center")
+
 
 
 

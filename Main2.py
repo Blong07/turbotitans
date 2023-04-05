@@ -11,7 +11,8 @@ window.bgpic('6track.gif')#had to be gif to work
 window.setup(width=2000,height=2000)
 window.update()
 
-number_of_cars = 7
+# changing the number of cars in the game
+number_of_cars = 10
 
 # Load images to use for the turtles
 # define the car image filenames
@@ -27,6 +28,10 @@ for car in Cars:
     turtle.addshape(car)
     images.append(car)
 
+def car_nomber():
+    pass
+
+
 # create six turtles with random images from the list
 turtles = []
 for i in range(0, number_of_cars):
@@ -35,6 +40,7 @@ for i in range(0, number_of_cars):
     t.penup()
     t.goto(-250, -100 + 50 * i)
     t.shape(images[i])
+    # t.write(car_nomber, align="center", font=("Cooper Black", 25, "italic"))
     t.showturtle()
     turtles.append(t)
 

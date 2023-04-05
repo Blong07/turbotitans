@@ -3,7 +3,7 @@ from easygui import *
 import easygui
 
 # message / information to be displayed on the screen
-message = "Welcome to the game, Alex Blong"
+message = "Press spacebar to move the cars"
 
 # title of the window
 title = "Turbo Titans"
