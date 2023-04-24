@@ -12,13 +12,11 @@ window.setup(width=2000,height=2000)
 window.update()
 
 # changing the number of cars in the game
-# # # Modify number_of_cars using easygui
-number_of_cars = enterbox("Enter number of cars", "Menu", default="10")
-number_of_cars = int(number_of_cars)
+number_of_cars = 10
 
 # Load images to use for the turtles
 # define the car image filenames
-Cars = ["PorCh2.gif", "bmCRw2.gif", "ferrar1.gif", "lambo.gif"]
+Cars = ["PorCh2.gif", "bmCRw2.gif", "cferrari.gif", "clambo.gif"]
 
 # adds car numbers and loops over car numbers
 for i in range (0, number_of_cars - len(Cars)):
@@ -152,6 +150,10 @@ def roll_dice():
     t = turtles[number - 1]
     racing_turtle(t, 50)
 
+# should say "I am Tim" when a car passes 5
+    if t.xcor() >= 5 * 50:
+        print("I am Tim")
+
 
 # Bind the roll_dice function to a key press event
 window.onkeypress(roll_dice, "space")
@@ -161,4 +163,3 @@ window.listen()
 turtle.mainloop()
 
 turtle.done()  # Keep the window open until the user closes it
-

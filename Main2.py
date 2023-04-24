@@ -17,6 +17,7 @@ number_of_cars = 10
 # Load images to use for the turtles
 # define the car image filenames
 Cars = ["PorCh2.gif", "bmCRw2.gif", "ferrar1.gif", "lambo.gif"]
+
 # adds car numbers and loops over car numbers
 for i in range (0, number_of_cars - len(Cars)):
     Cars.append(Cars[i])
