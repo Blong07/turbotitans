@@ -17,14 +17,12 @@ window.update()
 # changing the number of cars in the game
 # this is set by the amount of cars chosen in the first text box
 
-number_of_cars = enterbox("Enter number of cars", "Menu", default="10")
-#number_of_cars = int(number_of_cars)
-
-
+# limits the amount of cars to choose from
 def get_number_of_cars():
     """Function to get the number of cars from user input."""
     while True:
-        number_of_cars = enterbox("Enter number of cars (1-13)", "Menu", default="10")
+        # change amounts of cars in this game
+        number_of_cars = enterbox("Enter number of cars you would like in the game between (1-13)", "Menu", default="10")
         try:
             number_of_cars = int(number_of_cars)
             if 1 <= number_of_cars <= 13:
@@ -36,7 +34,8 @@ def get_number_of_cars():
 
 # Usage:
 cars = get_number_of_cars()
-print("Number of cars:", cars)
+number_of_cars = cars  # Assign the value of 'cars' to 'number_of_cars'
+print("Number of cars:", number_of_cars)
 
 
 # Load images to use for the turtles
@@ -183,15 +182,19 @@ def roll_dice():
     t = turtles[number - 1]
     racing_turtle(t, 50)
 
-    # Check if the turtle has reached or exceeded the x-coordinate of 250
-    if t.xcor() >= 0:
+    """xcord is the value of which the turtles on the screen must pass on the x-axis to win. It is best to change this in
+    multiples of 50, that are above the value of 0"""
+    xcord = 50 
+
+    # Check if the turtle has reached or exceeded the x-coordinate of chosen value
+    if t.xcor() >= xcord: # x-axis variable
         winner = car_numbers[t]
         msgbox(str(winner) + " wins!", "Winner!")
 
 
     # Check for other turtles that have reached or exceeded winning point on X axis
     for t in turtles:
-        if t.xcor() >= 0:
+        if t.xcor() >= xcord: # x-axis variable
             winner = car_numbers[t]
             msgbox(str(winner) + " wins!", "Winner!")
 

@@ -17,7 +17,6 @@ window.update()
 # changing the number of cars in the game
 # this is set by the amount of cars chosen in the first text box
 
-from easygui import enterbox
 
 def get_number_of_cars():
     """Function to get the number of cars from user input."""
