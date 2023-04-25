@@ -1,20 +1,41 @@
 import turtle
-import random
 from easygui import *
+import tkinter as tk
 
-# Create a Turtle window
+# Create a turtle window
 window = turtle.Screen()
 window.title("Turbo Titans!")  # sets title of window name
-window.setup(width=500, height=500)
 
-window.bgpic('6track.gif')#had to be gif to work
-window.setup(width=2000,height=2000)
+# Set the desired window size
+window_width = 1000
+window_height = 500
+
+# Set up the window with desired size
+window.setup(width=window_width, height=window_height)
+
+# Get the screen width and height
+screen_width = window.window_width()
+screen_height = window.window_height()
+
+# Get the screen coordinates
+screen = turtle.Screen()
+root = screen.getcanvas().winfo_toplevel()
+
+# Calculate the window coordinates to center it on the screen
+window_x = root.winfo_screenwidth() // 2 - screen_width // 2
+window_y = root.winfo_screenheight() // 2 - screen_height // 2
+
+# Set the window position on the screen
+root.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
+
+window.bgpic('6track.gif')  # set background image
+window.tracer(0)  # turn off screen updates for faster animation
 window.update()
 
 # changing the number of cars in the game
 # this is set by the amount of cars chosen in the first text box
 
-number_of_cars = enterbox("Enter number of cars", "Menu", default="enter here")
+number_of_cars = enterbox("Enter number of cars", "Menu", default="10")
 number_of_cars = int(number_of_cars)
 
 # Load images to use for the turtles
@@ -46,7 +67,7 @@ for i in range(0, number_of_cars):
     t = turtles[i]  # Use the existing turtle from the turtles list
     t.hideturtle()
     t.penup()
-    t.goto(-250, -100 + 50 * i)
+    t.goto(-250, -200 + 50 * i)
     t.shape(images[i])
     t.showturtle()
     t.color("orange") # Set turtle's color to orange
@@ -76,7 +97,8 @@ def chosen_name(name):
 
 def chosen_car(carnumberX):
     # message / information to be displayed on the screen
-    message = "Well done! You have chosen the car: " + str(carnumberX)
+    message = "Well done! You have chosen the car: " + str(carnumberX), "Make sure to press the space bar to move the cars along the track"
+
 
     # title of the window
     title = "Turbo Titans"
@@ -160,6 +182,71 @@ def roll_dice():
     t = turtles[number - 1]
     racing_turtle(t, 50)
 
+    # Check if the turtle has reached or exceeded the x-coordinate of 250
+    if t.xcor() >= 0:
+        winner = car_numbers[t]
+        msgbox(str(winner) + " wins!", "Winner!")
+        #window.bye()  # Close the window and end the game
+
+    # Check for other turtles that have reached or exceeded winning point on X axis
+    for t in turtles:
+        if t.xcor() >= 0:
+            winner = car_numbers[t]
+            msgbox(str(winner) + " wins!", "Winner!")
+
+
+
+
+# Bind the roll_dice function to a key press event
+window.onkeypress(roll_dice, "space")
+
+import turtle
+import random
+from easygui import *
+
+# Create a Turtle window
+window = turtle.Screen()
+window.title("Turbo Titans!")
+window.setup(width=500, height=500)
+
+# ... rest of the code ...
+
+# Create a dictionary to store car distances
+car_distances = {}
+for i in range(1, number_of_cars + 1):
+    car_distances[i] = 0
+
+# Function to display winner popup
+def display_winner(car_number):
+    # Message to be displayed on the screen
+    message = str(car_number) + " wins!"
+
+    # Title of the window
+    title = "Turbo Titans"
+
+    # Text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # Creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+    # Printing the output
+    print("User pressed: " + output)
+
+
+# Function to move turtle and check for winner
+"""def move_and_check_winner(t, distance):
+    t.setx(t.xcor() + distance)
+    car_number = car_numbers[t]
+    car_distances[car_number] += distance
+    if car_distances[car_number] >= 5:
+        display_winner(car_number)"""
+
+
+
+
+
+
 
 # Bind the roll_dice function to a key press event
 window.onkeypress(roll_dice, "space")
@@ -169,4 +256,5 @@ window.listen()
 turtle.mainloop()
 
 turtle.done()  # Keep the window open until the user closes it
+
 
