@@ -1,35 +1,13 @@
 import turtle
+import random
 from easygui import *
-import tkinter as tk
 
-# Create a turtle window
+# Create a Turtle window
 window = turtle.Screen()
-window.title("Turbo Titans!")  # sets title of window name
-
-# Set the desired window size
-window_width = 1000
-window_height = 500
-
-# Set up the window with desired size
-window.setup(width=window_width, height=window_height)
-
-# Get the screen width and height
-screen_width = window.window_width()
-screen_height = window.window_height()
-
-# Get the screen coordinates
-screen = turtle.Screen()
-root = screen.getcanvas().winfo_toplevel()
-
-# Calculate the window coordinates to center it on the screen
-window_x = root.winfo_screenwidth() // 2 - screen_width // 2
-window_y = root.winfo_screenheight() // 2 - screen_height // 2
-
-# Set the window position on the screen
-root.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
-
-window.bgpic('6track.gif')  # set background image
-window.tracer(0)  # turn off screen updates for faster animation
+window.title("Turbo Titans!")
+window.setup(width=500, height=500)
+window.bgpic('6track.gif')
+window.setup(width=2000, height=2000)
 window.update()
 
 # changing the number of cars in the game
@@ -43,9 +21,8 @@ number_of_cars = int(number_of_cars)
 Cars = ["PorCh2.gif", "bmCRw2.gif", "ferrar1.gif", "lambo.gif"]
 
 # adds car numbers and loops over car numbers
-for i in range (0, number_of_cars - len(Cars)):
+for i in range(0, number_of_cars - len(Cars)):
     Cars.append(Cars[i])
-
 
 # create a list of turtle images by adding the car images to the shape dictionary
 images = []
@@ -55,12 +32,10 @@ for car in Cars:
     images.append(car)
     turtles.append(turtle.Turtle())  # Append a new turtle to the turtles list
 
-
 # create a dictionary to store car numbers
 car_numbers = {}
 for i in range(1, number_of_cars + 1):
     car_numbers[turtles[i - 1]] = i
-
 
 # create six turtles with random images from the list
 for i in range(0, number_of_cars):
@@ -70,11 +45,8 @@ for i in range(0, number_of_cars):
     t.goto(-250, -200 + 50 * i)
     t.shape(images[i])
     t.showturtle()
-    t.color("orange") # Set turtle's color to orange
-    t.write(i+1, align="left", font=("Cooper Black", 25, "bold")) # Set font to bold
-
-
-
+    t.color("orange")  # Set turtle's color to orange
+    t.write(i + 1, align="left", font=("Cooper Black", 25, "bold"))  # Set font to bold
 
 
 # defining name of user
@@ -97,8 +69,7 @@ def chosen_name(name):
 
 def chosen_car(carnumberX):
     # message / information to be displayed on the screen
-    message = "Well done! You have chosen the car: " + str(carnumberX), "Make sure to press the space bar to move the cars along the track"
-
+    message = "Well done! You have chosen the car: {}\nMake sure to press the space bar to move the cars along the track".format(carnumberX)
 
     # title of the window
     title = "Turbo Titans"
@@ -113,9 +84,24 @@ def chosen_car(carnumberX):
     print("User pressed  : " + output)
 
 
+
 def bad_car(carnumberX):
     # message / information to be displayed on the screen
     message = "You fool, you have chosen the car number:" + str(carnumberX)
+
+    # title of the window
+    title = "Turbo Titans"
+
+    # text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+
+def bad_car(carnumberX):
+    # message / information to be displayed on the screen
+    message = "You have chosen an unacceptable car fool, " + str(carnumberX)
 
     # title of the window
     title = "Turbo Titans"
@@ -143,7 +129,7 @@ def hello():
 hello()
 
 
-"""def carnumber():
+def carnumber():
     carnumberString = turtle.textinput("Enter car between 1 and " + str(number_of_cars), "Enter Car Number")
 
     try:
@@ -161,21 +147,7 @@ hello()
 
             # show a message box that says you have the wrong car
     except:
-        bad_car(carnumberString)"""
-
-def carnumber():
-    carnumberString = turtle.textinput("Enter car between 1 and " + str(number_of_cars), "Enter Car Number")
-
-    try:
-        carnumberX = int(carnumberString)
-
-        if carnumberX >= 1 and carnumberX <= number_of_cars:
-            chosen_car(carnumberX)
-        else:
-            bad_car(carnumberX)
-    except ValueError:
         bad_car(carnumberString)
-
 
 
 carnumber()
@@ -196,63 +168,9 @@ def roll_dice():
     t = turtles[number - 1]
     racing_turtle(t, 50)
 
-    # Check if the turtle has reached or exceeded the x-coordinate of 250
-    if t.xcor() >= 0:
-        winner = car_numbers[t]
-        msgbox(str(winner) + " wins!", "Winner!")
-        #window.bye()  # Close the window and end the game
-
-    # Check for other turtles that have reached or exceeded winning point on X axis
-    for t in turtles:
-        if t.xcor() >= 0:
-            winner = car_numbers[t]
-            msgbox(str(winner) + " wins!", "Winner!")
-
-
-
-
-# Bind the roll_dice function to a key press event
-window.onkeypress(roll_dice, "space")
-
-import turtle
-import random
-from easygui import *
-
-# Create a Turtle window
-window = turtle.Screen()
-window.title("Turbo Titans!")
-window.setup(width=500, height=500)
-
-# ... rest of the code ...
-
-# Create a dictionary to store car distances
-car_distances = {}
-for i in range(1, number_of_cars + 1):
-    car_distances[i] = 0
-
-# Function to display winner popup
-def display_winner(car_number):
-    # Message to be displayed on the screen
-    message = str(car_number) + " wins!"
-
-    # Title of the window
-    title = "Turbo Titans"
-
-    # Text of the Ok button
-    ok_btn_txt = "Continue"
-
-    # Creating a message box
-    output = msgbox(message, title, ok_btn_txt)
-
-    # Printing the output
-    print("User pressed: " + output)
-
-
-
-
-
-
-
+# should say "I am Tim" when a car passes 5
+    if t.xcor() >= 5 * 50:
+        print("I am Tim")
 
 
 # Bind the roll_dice function to a key press event
@@ -263,5 +181,3 @@ window.listen()
 turtle.mainloop()
 
 turtle.done()  # Keep the window open until the user closes it
-
-

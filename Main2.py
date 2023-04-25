@@ -44,6 +44,88 @@ for i in range(0, number_of_cars):
     # t.write(car_nomber, align="center", font=("Cooper Black", 25, "italic"))
     t.showturtle()
     turtles.append(t)
+def bad_car(carnumberX):
+    # message / information to be displayed on the screen
+    message = "You have chosen an unacceptable car fool, " + str(carnumberX)
+
+    # title of the window
+    title = "Turbo Titans"
+
+    # text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+    # printing the output
+    print("User pressed  : " + output)
+
+    carnumber()
+
+
+# asks for name
+def hello():
+    name = str(turtle.textinput("What is your name?", "Enter your Name"))
+    print("hello " + str(name))
+    chosen_name(name)
+    return
+
+
+hello()
+
+
+def carnumber():
+    carnumberString = turtle.textinput("Enter car between 1 and " + str(number_of_cars), "Enter Car Number")
+
+    try:
+
+        carnumberX = int(carnumberString)
+
+        # print(str(carnumberX) + " is a good car")
+
+        # car selection (choose between 1 - number of cars)
+        if carnumberX >= 1 and carnumberX <= number_of_cars:
+            chosen_car(carnumberX)
+        else:
+            # print('you are annoying and stupid')
+            bad_car(carnumberX)
+
+            # show a message box that says you have the wrong car
+    except:
+        bad_car(carnumberString)
+
+
+carnumber()
+
+
+def racing_turtle(t, distance):
+    t.setx(t.xcor() + distance)
+
+print("press space bar to roll dice")
+
+def roll_dice():
+    # Roll the dice and move the corresponding turtle
+    number = random.randint(1, number_of_cars)
+
+    print("Dice rolled: ", number)
+
+    # Move the corresponding turtle
+    t = turtles[number - 1]
+    racing_turtle(t, 50)
+
+# should say "I am Tim" when a car passes 5
+    if t.xcor() >= 5 * 50:
+        print("I am Tim")
+
+
+# Bind the roll_dice function to a key press event
+window.onkeypress(roll_dice, "space")
+
+# Start the main event loop
+window.listen()
+turtle.mainloop()
+
+turtle.done()  # Keep the window open until the user closes it
 
 
 # defining name of user

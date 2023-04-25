@@ -1,8 +1,5 @@
 import turtle
-import random
 from easygui import *
-from easygui import enterbox
-
 
 # Create a Turtle window
 window = turtle.Screen()
@@ -13,34 +10,14 @@ window.bgpic('6track.gif')#had to be gif to work
 window.setup(width=2000,height=2000)
 window.update()
 
-
 # changing the number of cars in the game
 # this is set by the amount of cars chosen in the first text box
 
 number_of_cars = enterbox("Enter number of cars", "Menu", default="10")
-#number_of_cars = int(number_of_cars)
-
-
-def get_number_of_cars():
-    """Function to get the number of cars from user input."""
-    while True:
-        number_of_cars = enterbox("Enter number of cars (1-13)", "Menu", default="10")
-        try:
-            number_of_cars = int(number_of_cars)
-            if 1 <= number_of_cars <= 13:
-                return number_of_cars
-            else:
-                print("Please enter a number between 1 and 12.")
-        except ValueError:
-            print("Please enter a valid integer.")
-
-# Usage:
-cars = get_number_of_cars()
-print("Number of cars:", cars)
-
+number_of_cars = int(number_of_cars)
 
 # Load images to use for the turtles
-
+# define the car image filenames
 Cars = ["PorCh2.gif", "bmCRw2.gif", "ferrar1.gif", "lambo.gif"]
 
 # adds car numbers and loops over car numbers
@@ -98,8 +75,8 @@ def chosen_name(name):
 
 def chosen_car(carnumberX):
     # message / information to be displayed on the screen
-    message = "Well done! You have chosen the car: {}. Make sure to press the space bar to move the cars along the track".format(
-        carnumberX)
+    message = "Well done! You have chosen the car: " + str(carnumberX), "Make sure to press the space bar to move the cars along the track"
+
 
     # title of the window
     title = "Turbo Titans"
@@ -187,7 +164,7 @@ def roll_dice():
     if t.xcor() >= 0:
         winner = car_numbers[t]
         msgbox(str(winner) + " wins!", "Winner!")
-
+        #window.bye()  # Close the window and end the game
 
     # Check for other turtles that have reached or exceeded winning point on X axis
     for t in turtles:
@@ -201,4 +178,47 @@ def roll_dice():
 # Bind the roll_dice function to a key press event
 window.onkeypress(roll_dice, "space")
 
-turtle.done()
+import turtle
+import random
+from easygui import *
+
+# Create a Turtle window
+window = turtle.Screen()
+window.title("Turbo Titans!")
+window.setup(width=500, height=500)
+
+# ... rest of the code ...
+
+# Create a dictionary to store car distances
+car_distances = {}
+for i in range(1, number_of_cars + 1):
+    car_distances[i] = 0
+
+# Function to display winner popup
+def display_winner(car_number):
+    # Message to be displayed on the screen
+    message = str(car_number) + " wins!"
+
+    # Title of the window
+    title = "Turbo Titans"
+
+    # Text of the Ok button
+    ok_btn_txt = "Continue"
+
+    # Creating a message box
+    output = msgbox(message, title, ok_btn_txt)
+
+    # Printing the output
+    print("User pressed: " + output)
+
+
+# Bind the roll_dice function to a key press event
+window.onkeypress(roll_dice, "space")
+
+# Start the main event loop
+window.listen()
+turtle.mainloop()
+
+turtle.done()  # Keep the window open until the user closes it
+
+
