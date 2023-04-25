@@ -143,7 +143,7 @@ def hello():
 hello()
 
 
-def carnumber():
+"""def carnumber():
     carnumberString = turtle.textinput("Enter car between 1 and " + str(number_of_cars), "Enter Car Number")
 
     try:
@@ -161,7 +161,21 @@ def carnumber():
 
             # show a message box that says you have the wrong car
     except:
+        bad_car(carnumberString)"""
+
+def carnumber():
+    carnumberString = turtle.textinput("Enter car between 1 and " + str(number_of_cars), "Enter Car Number")
+
+    try:
+        carnumberX = int(carnumberString)
+
+        if carnumberX >= 1 and carnumberX <= number_of_cars:
+            chosen_car(carnumberX)
+        else:
+            bad_car(carnumberX)
+    except ValueError:
         bad_car(carnumberString)
+
 
 
 carnumber()
@@ -234,13 +248,6 @@ def display_winner(car_number):
     print("User pressed: " + output)
 
 
-# Function to move turtle and check for winner
-"""def move_and_check_winner(t, distance):
-    t.setx(t.xcor() + distance)
-    car_number = car_numbers[t]
-    car_distances[car_number] += distance
-    if car_distances[car_number] >= 5:
-        display_winner(car_number)"""
 
 
 
