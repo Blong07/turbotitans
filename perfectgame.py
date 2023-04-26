@@ -28,7 +28,7 @@ def get_number_of_cars():
             if 1 <= number_of_cars <= 13:
                 return number_of_cars
             else:
-                print("Please enter a number between 1 and 12.")
+                print("Please enter a number between 1 and 13.")
         except ValueError:
             print("Please enter a valid integer.")
 
@@ -38,7 +38,7 @@ number_of_cars = cars  # Assign the value of 'cars' to 'number_of_cars'
 print("Number of cars:", number_of_cars)
 
 
-# Load images to use for the turtles
+# Load images to use for the turtles in list
 
 Cars = ["PorCh2.gif", "bmCRw2.gif", "ferrar1.gif", "lambo.gif"]
 
@@ -62,7 +62,7 @@ for i in range(1, number_of_cars + 1):
     car_numbers[turtles[i - 1]] = i
 
 
-# create six turtles with random images from the list
+# create an amount of turtles with random images from the list
 for i in range(0, number_of_cars):
     t = turtles[i]  # Use the existing turtle from the turtles list
     t.hideturtle()
