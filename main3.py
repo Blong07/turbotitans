@@ -95,6 +95,8 @@ def chosen_name(name):
     print("User pressed  : " + output)
 
 
+chosen_car_number = 0
+
 def chosen_car(carnumberX):
     # message / information to be displayed on the screen
     message = "Well done! You have chosen the car: {}. Make sure to press the space bar to move the cars along the track".format(
@@ -112,10 +114,12 @@ def chosen_car(carnumberX):
     # printing the output
     print("User pressed  : " + output)
 
+    chosen_car_number = carnumberX
+
 
 def bad_car(carnumberX):
     # message / information to be displayed on the screen
-    message = "You fool, you have chosen the car number:" + str(carnumberX)
+    message = "You fool, you have chosen an invalid car number:" + str(carnumberX) + ". Press continue to resubmit"
 
     # title of the window
     title = "Turbo Titans"
@@ -173,6 +177,7 @@ def racing_turtle(t, distance):
 print("press space bar to roll dice")
 
 def roll_dice():
+    print("dice rolled ")
     # Roll the dice and move the corresponding turtle
     number = random.randint(1, number_of_cars)
 
@@ -189,19 +194,27 @@ def roll_dice():
     # Check if the turtle has reached or exceeded the x-coordinate of chosen value
     if t.xcor() >= xcord: # x-axis variable
         winner = car_numbers[t]
-        msgbox(str(winner) + " wins!", "Winner!")
+        if winner == chosen_car_number:
+            msgbox("Your car, " + str(winner) + " wins!", "You are the winner! Congratulations")
+        else:
+            msgbox(str(winner) + " wins!", "Winner!")
 
 
     # Check for other turtles that have reached or exceeded winning point on X axis
     for t in turtles:
         if t.xcor() >= xcord: # x-axis variable
             winner = car_numbers[t]
-            msgbox(str(winner) + " wins!", "Winner!")
+            if winner == chosen_car_number:
+                msgbox("Your car, " + str(winner) + " wins!", "You are the winner! Congratulations")
+            else:
+                msgbox(str(winner) + " wins!", "Winner!")
 
 
 
 
 # Bind the roll_dice function to a key press event
 window.onkeypress(roll_dice, "space")
+
+window.listen()
 
 turtle.done()
